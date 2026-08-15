@@ -9,7 +9,7 @@ export function CreateContent({open, onClose}){
             <div className="flex flex-col justify-center">
                 <span className="bg-white opacity-100 p-2 rounded">
                     <div className="flex justify-end">
-                        <div onClick={onClose}>
+                        <div onClick={onClose} className="cursor-pointer">
                             <CrossIcon/>
                         </div>
                     </div>

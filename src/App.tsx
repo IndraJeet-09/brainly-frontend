@@ -5,12 +5,15 @@ import  Card  from './components/Card'
 import { CreateContent } from './components/CreateContent'
 import { PlusIcon } from './icons/PlusIcon'
 import { ShareIcon } from './icons/ShareIcon'
+import { Sidebar } from './components/Sidebar'
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false)
 
-  return (
-    <div className='p-4'>
+  return ( <div>
+
+    <Sidebar />
+    <div className='p-4 ml-72 min-h-screen bg-grey1 border-2'>
       <CreateContent open={modalOpen} onClose={() => {
         setModalOpen(false)
       }}/>
@@ -24,6 +27,7 @@ function App() {
 
       </div>
     </div>
+  </div>
   )
 }
 
