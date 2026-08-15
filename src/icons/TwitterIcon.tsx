@@ -1,5 +1,5 @@
 export function TwitterIcon(){
-    return <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" className="bi bi-twitter-x" viewBox="0 0 16 16" id="Twitter-X--Streamline-Bootstrap" height="16" width="16">
+    return <svg  xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-twitter-x" viewBox="0 0 20 20"  id="Twitter-X--Streamline-Bootstrap" height="32" width="32">
   <desc>
     Twitter X Streamline Icon: https://streamlinehq.com
   </desc>

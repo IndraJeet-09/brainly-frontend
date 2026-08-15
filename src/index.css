@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-    --color-purple2: #d9ddee;
-    --color-purple6: #7164c0;
-    --color-purple5: #9492db;
+    --color-purple2: #d8d8fc;
+    --color-purple6: #5448e4;
+    --color-purple5: #c0b4f0;
     --color-grey2: #e6e9ed;
     --color-grey1: #eeeeef;
     --color-grey6: #95989c;
