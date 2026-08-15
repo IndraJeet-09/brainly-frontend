@@ -5,18 +5,19 @@ interface ButtonProps {
     text: string,
     startIcon?: ReactElement,
     endIcon?: ReactElement,
-    onClick?: () => void 
+    onClick?: () => void,
+    loading?: boolean 
 }
 
 const variantClasses = {
-    "primary": "bg-purple6 text-white",
+    "primary": "bg-purple6 text-white ",
     "secondary": "bg-purple2 text-purple6"
 }
 
-const defaultStyles = "px-4 py-2 rounded-md font-light flex items-center"
+const defaultStyles = "px-4 py-2 rounded-md font-light flex items-center "
 
-export function Button({variant, text, startIcon, onClick}: ButtonProps){
-    return <button onClick={onClick} className={variantClasses[variant]+" "+ defaultStyles}>
+export function Button({variant, text, startIcon, onClick, loading}: ButtonProps){
+    return <button onClick={onClick} className={variantClasses[variant]+" "+ defaultStyles } disabled={loading}>
         <div className="pr-2">
             {startIcon}
         </div>
