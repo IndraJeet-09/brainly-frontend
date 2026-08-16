@@ -14,7 +14,7 @@ const ContentType = {
 export function CreateContent({open, onClose}){
     const titleRef = useRef<HTMLInputElement>();
     const linkRef = useRef<HTMLInputElement>();
-    const [type, setType] = useState(ContentType.Youtube)
+    const [type, setType] = useState(ContentType.Youtube || ContentType.Twitter)
 
     async function addContent(){
         const title = titleRef.current?.value;
