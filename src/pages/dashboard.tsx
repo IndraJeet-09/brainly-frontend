@@ -11,12 +11,22 @@ import axios from 'axios'
 import { BACKEND_URL } from '../config'
 
 function Dashboard() {
+  const [selectedType, setSelectedType] = useState("all")
   const [modalOpen, setModalOpen] = useState(false)
   const contents = useContent();
 
+  const filterContent = 
+    selectedType === "all"
+      ? contents 
+      : contents.filter((content) => content.type === selectedType)
+  
+  console.log("selected:", selectedType);
+  console.log("all:", contents);
+  console.log("filtered:", filterContent);
+
   return ( <div>
 
-    <Sidebar />
+    <Sidebar setSelectedType = {setSelectedType} />
     <div className='p-4 ml-96 min-h-screen bg-grey1 border-2'>
       <CreateContent open={modalOpen} onClose={() => {
         setModalOpen(false)
@@ -36,12 +46,8 @@ function Dashboard() {
       }} variant='secondary' text='Share Brain' startIcon={<ShareIcon/>}></Button>
       </div>
       
-      {/* {JSON.stringify(contents)} */}
       <div className='flex flex-wrap gap-6 items-start pt-4'>
-        {contents?.map(({type, link, title}) => <Card type={type} link={link} title={title}/>)}
-
-      {/* <Card type='twitter' link='https://x.com/xKhalifan/status/2076011903357452465' title='BRAINMAXXING'/>
-      <Card type='youtube' link='https://www.youtube.com/embed/4MAupwjl3pc?si=5ERrVqyJM7CdQpff' title='Art of Wining in TECH'/> */}
+        {filterContent?.map(({type, link, title}) => <Card key={link} type={type} link={link} title={title}/>)}
 
       </div>
     </div>
