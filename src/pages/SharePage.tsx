@@ -7,7 +7,13 @@ import { Sidebar } from "../components/Sidebar";
 
 function SharePage() {
     const [contents, setContents] = useState([])
+    const [selectedType, setSelectedType] = useState("all")
     const {shareLink} = useParams();
+
+    const filterType =
+        selectedType === "all"
+        ? contents 
+        : contents.filter((content) => content.type === selectedType)
 
     useEffect(() => {
         if(!shareLink) return;
@@ -19,10 +25,10 @@ function SharePage() {
     
   return (
     <div>
-        <Sidebar />
+        <Sidebar setSelectedType={setSelectedType}/>
         <div className='p-4 ml-96 min-h-screen bg-grey1 border-2'>
             <div className='flex flex-wrap gap-6 items-start pt-4'>
-                    {contents?.map(({type, link, title}) => <Card type={type} link={link} title={title}/>)}
+                    {filterType?.map(({type, link, title}) => <Card type={type} link={link} title={title}/>)}
             </div>
         </div>
     </div>
