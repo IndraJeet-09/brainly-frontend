@@ -27,13 +27,18 @@ export function CreateContent({open, onClose}){
             headers: {
                 "Authorization": localStorage.getItem("token")
             }
-        })   
+        })  
+        onClose(); 
     }
 
     return <div>
-    
-        {open && <div className="w-screen h-screen bg-slate-600 fixed top-0 left-0 opacity-80 flex justify-center">
-            <div className="flex flex-col justify-center">
+        
+        {open && <div> 
+            <div className="w-screen h-screen bg-slate-600 fixed top-0 left-0 opacity-80 flex justify-center">
+
+            </div>
+            <div className="w-screen h-screen fixed top-0 left-0  flex justify-center">
+                <div className="flex flex-col justify-center">
                 <span className="bg-white opacity-100 p-2 rounded">
                     <div className="flex justify-end">
                         <div onClick={onClose} className="cursor-pointer">
@@ -59,6 +64,7 @@ export function CreateContent({open, onClose}){
                     <Button onClick={addContent} variant="primary" text="Submit"/>
                     </div>
                 </span>
+            </div>
             </div>
         </div>}
     </div>
