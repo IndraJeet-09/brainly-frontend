@@ -1,7 +1,34 @@
+import { useRef, useState } from "react";
 import { CrossIcon } from "../icons/CrossIcon";
 import { Button } from "./Button";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
+
+type ContentType = "youtube" | "twitter";
+
+const ContentType = {
+    Youtube: "youtube" as const,
+    Twitter: "twitter" as const
+}
 
 export function CreateContent({open, onClose}){
+    const titleRef = useRef<HTMLInputElement>();
+    const linkRef = useRef<HTMLInputElement>();
+    const [type, setType] = useState(ContentType.Youtube)
+
+    async function addContent(){
+        const title = titleRef.current?.value;
+        const link = linkRef.current?.value;
+        await axios.post(BACKEND_URL + "/api/v1/content", {
+             link,
+             type,
+             title,    
+        }, {
+            headers: {
+                "Authorization": localStorage.getItem("token")
+            }
+        })   
+    }
 
     return <div>
     
@@ -14,11 +41,22 @@ export function CreateContent({open, onClose}){
                         </div>
                     </div>
                     <div>
-                        <Input placeholder={"Title"}/>
-                        <Input placeholder={"Link"}/>
+                        <Input ref={titleRef} placeholder={"Title"}/>
+                        <Input ref={linkRef} placeholder={"Link"}/>
+                    </div>
+                    <div>
+                        <h1 className="flex justify-center">Type</h1>
+                        <div className="flex justify-center gap-2 p-4">
+                            <Button text="Youtube" variant={type === ContentType.Youtube ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Youtube)
+                            }} />
+                            <Button text="Twitter" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }} />
+                        </div>
                     </div>
                     <div className="flex justify-center">
-                    <Button variant="primary" text="Submit"/>
+                    <Button onClick={addContent} variant="primary" text="Submit"/>
                     </div>
                 </span>
             </div>
@@ -27,8 +65,8 @@ export function CreateContent({open, onClose}){
 
 }
 
-export function Input({onChange, placeholder}: {placeholder: string; onChange?: () => void}){
+export function Input({ref, placeholder}: {placeholder: string; ref?: any}){
     return <div>
-        <input placeholder={placeholder} type="text" className="px-4 py-2 border m-2 rounded" onChange={onChange}/>
+        <input ref={ref} placeholder={placeholder} type="text" className="px-4 py-2 border m-2 rounded" />
     </div>
 }

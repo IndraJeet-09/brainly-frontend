@@ -1,5 +1,10 @@
 @import "tailwindcss";
-
+button{
+    cursor: pointer;
+}
+button:disabled{
+    cursor: default;
+}
 @theme {
     --color-purple2: #d8d8fc;
     --color-purple6: #5448e4;
