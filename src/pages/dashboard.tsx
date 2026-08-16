@@ -17,7 +17,7 @@ function Dashboard() {
   return ( <div>
 
     <Sidebar />
-    <div className='p-4 ml-72 min-h-screen bg-grey1 border-2'>
+    <div className='p-4 ml-96 min-h-screen bg-grey1 border-2'>
       <CreateContent open={modalOpen} onClose={() => {
         setModalOpen(false)
       }}/>
